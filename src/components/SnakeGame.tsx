@@ -4,7 +4,13 @@ import { Card } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 
 const GRID_SIZE = 20;
-const INITIAL_SNAKE = [{ x: 10, y: 10 }];
+const INITIAL_SNAKE = [
+  { x: 10, y: 10 },
+  { x: 10, y: 11 },
+  { x: 10, y: 12 },
+  { x: 10, y: 13 },
+  { x: 10, y: 14 }
+];
 const INITIAL_FOOD = { x: 15, y: 15 };
 const INITIAL_DIRECTION = { x: 0, y: -1 };
 const GAME_SPEED = 150;
