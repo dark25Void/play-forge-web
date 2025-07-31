@@ -7,10 +7,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Attribution Banner */}
-      <div className="bg-primary/10 border-b border-primary/20 py-3">
+      <div className="bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 border-b border-primary/30 py-4">
         <div className="container mx-auto px-4">
-          <p className="text-center text-primary font-medium text-glow">
-            Made by sheikhkhalifa students
+          <p className="text-center text-xl font-bold text-glow animate-pulse">
+            🎮 Made by <span className="text-primary">Baishe</span>, <span className="text-secondary">Alvin</span>, <span className="text-accent">Nizar</span> and <span className="text-purple-400">Said Aboud</span> 🎮
           </p>
         </div>
       </div>

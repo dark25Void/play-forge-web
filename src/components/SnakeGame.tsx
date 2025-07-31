@@ -181,28 +181,28 @@ export const SnakeGame = () => {
   }, [gameState.gameOver, gameState.score, highScore, toast]);
 
   return (
-    <Card className="p-6 bg-card/50 backdrop-blur-sm border-primary/20">
+    <Card className="p-6 bg-card/50 backdrop-blur-sm border-rainbow bounce-rainbow">
       <div className="space-y-6">
         {/* Game Header */}
         <div className="flex justify-between items-center">
           <div className="space-y-1">
-            <h2 className="text-2xl font-bold text-glow">Neon Snake</h2>
-            <p className="text-muted-foreground">Score: {gameState.score}</p>
+            <h2 className="text-3xl font-bold text-rainbow">🌈 Rainbow Snake 🌈</h2>
+            <p className="text-muted-foreground text-lg">🎯 Score: <span className="text-primary font-bold">{gameState.score}</span></p>
           </div>
           <div className="text-right space-y-1">
-            <p className="text-sm text-muted-foreground">High Score</p>
-            <p className="text-xl font-bold text-accent">{highScore}</p>
+            <p className="text-sm text-muted-foreground">🏆 High Score</p>
+            <p className="text-2xl font-bold text-rainbow">{highScore}</p>
           </div>
         </div>
 
         {/* Game Board */}
         <div className="relative">
           <div 
-            className="grid gap-px bg-border p-2 rounded-lg mx-auto border-glow"
+            className="grid gap-px bg-gradient-to-br from-purple/20 to-primary/20 p-3 rounded-xl mx-auto border-rainbow shadow-lg"
             style={{
               gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
-              width: '400px',
-              height: '400px',
+              width: '420px',
+              height: '420px',
             }}
           >
             {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, index) => {
@@ -212,34 +212,60 @@ export const SnakeGame = () => {
               const isSnake = gameState.snake.some(segment => segment.x === x && segment.y === y);
               const isHead = gameState.snake[0]?.x === x && gameState.snake[0]?.y === y;
               const isFood = gameState.food.x === x && gameState.food.y === y;
+              
+              // Get snake segment index for rainbow coloring
+              const snakeIndex = gameState.snake.findIndex(segment => segment.x === x && segment.y === y);
+              const rainbowColors = [
+                'from-red-500 to-orange-500',
+                'from-orange-500 to-yellow-500', 
+                'from-yellow-500 to-green-500',
+                'from-green-500 to-cyan-500',
+                'from-cyan-500 to-blue-500',
+                'from-blue-500 to-purple-500',
+                'from-purple-500 to-pink-500'
+              ];
 
               return (
                 <div
                   key={index}
                   className={`
-                    aspect-square rounded-sm transition-all duration-100
+                    aspect-square rounded-md transition-all duration-200 relative
                     ${isSnake 
                       ? isHead 
-                        ? 'bg-gradient-primary shadow-glow' 
-                        : 'bg-primary/80'
+                        ? 'bg-gradient-to-br from-white to-yellow-300 shadow-[0_0_20px_#ffd700] animate-pulse scale-110 z-10' 
+                        : `bg-gradient-to-br ${rainbowColors[snakeIndex % rainbowColors.length]} shadow-[0_0_10px_rgba(255,255,255,0.3)] scale-105`
                       : isFood 
-                        ? 'bg-gradient-accent shadow-accent-glow animate-pulse-glow' 
-                        : 'bg-secondary/30'
+                        ? 'bg-gradient-to-br from-pink-400 to-red-500 shadow-[0_0_25px_#ff1493] animate-bounce scale-125 z-10' 
+                        : 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 hover:from-slate-700/50 hover:to-slate-800/50'
                     }
                   `}
-                />
+                >
+                  {isHead && (
+                    <div className="absolute inset-0 flex items-center justify-center text-xs">
+                      👑
+                    </div>
+                  )}
+                  {isFood && (
+                    <div className="absolute inset-0 flex items-center justify-center text-xs animate-spin">
+                      🍎
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
 
           {/* Game Over Overlay */}
           {gameState.gameOver && (
-            <div className="absolute inset-0 bg-background/90 backdrop-blur-sm rounded-lg flex items-center justify-center">
-              <div className="text-center space-y-4">
-                <h3 className="text-3xl font-bold text-destructive">Game Over!</h3>
-                <p className="text-lg">Final Score: {gameState.score}</p>
-                <Button onClick={startGame} variant="default" className="bg-gradient-primary">
-                  Play Again
+            <div className="absolute inset-0 bg-background/90 backdrop-blur-sm rounded-xl flex items-center justify-center border-rainbow">
+              <div className="text-center space-y-4 p-6 bg-gradient-to-br from-purple/20 to-primary/20 rounded-lg border-rainbow">
+                <h3 className="text-4xl font-bold text-rainbow animate-bounce">💀 Game Over! 💀</h3>
+                <p className="text-xl text-rainbow">🎯 Final Score: <span className="font-bold">{gameState.score}</span></p>
+                {gameState.score > highScore && (
+                  <p className="text-lg text-rainbow animate-pulse">🎉 NEW HIGH SCORE! 🎉</p>
+                )}
+                <Button onClick={startGame} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                  🚀 Play Again 🚀
                 </Button>
               </div>
             </div>
@@ -247,27 +273,30 @@ export const SnakeGame = () => {
         </div>
 
         {/* Game Controls */}
-        <div className="flex flex-wrap gap-3 justify-center">
+        <div className="flex flex-wrap gap-4 justify-center">
           {!gameState.isPlaying && !gameState.gameOver ? (
-            <Button onClick={startGame} variant="default" className="bg-gradient-primary">
-              Start Game
+            <Button onClick={startGame} className="bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+              🎮 Start Game 🎮
             </Button>
           ) : !gameState.gameOver ? (
-            <Button onClick={pauseGame} variant="secondary">
-              {gameState.isPlaying ? 'Pause' : 'Resume'}
+            <Button onClick={pauseGame} className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+              {gameState.isPlaying ? '⏸️ Pause' : '▶️ Resume'}
             </Button>
           ) : null}
           
-          <Button onClick={startGame} variant="outline" className="border-accent text-accent">
-            New Game
+          <Button onClick={startGame} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-rainbow">
+            🆕 New Game
           </Button>
         </div>
 
         {/* Instructions */}
-        <div className="text-center space-y-2 text-sm text-muted-foreground">
-          <p>Use arrow keys to control the snake</p>
-          <p>Eat the glowing food to grow and score points</p>
-          <p>Avoid hitting walls and yourself!</p>
+        <div className="text-center space-y-3 text-base">
+          <div className="bg-gradient-to-r from-purple/20 to-primary/20 p-4 rounded-lg border-rainbow">
+            <p className="text-rainbow font-semibold">🎯 Use arrow keys to control your rainbow snake</p>
+            <p className="text-rainbow font-semibold">🍎 Eat the spinning apples to grow and score points</p>
+            <p className="text-rainbow font-semibold">⚠️ Avoid hitting walls and yourself!</p>
+            <p className="text-primary font-bold text-lg mt-2">🌈 The longer you get, the more colorful you become! 🌈</p>
+          </div>
         </div>
       </div>
     </Card>
