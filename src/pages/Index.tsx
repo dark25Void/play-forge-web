@@ -6,6 +6,15 @@ import { GameFooter } from '@/components/GameFooter';
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      {/* Attribution Banner */}
+      <div className="bg-primary/10 border-b border-primary/20 py-3">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-primary font-medium text-glow">
+            Made by sheikhkhalifa students
+          </p>
+        </div>
+      </div>
+      
       {/* Hero Section */}
       <GameHero />
       
