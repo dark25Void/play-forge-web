@@ -65,7 +65,7 @@ const Index = () => {
         <div className="bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 border-b border-primary/30 py-4">
           <div className="container mx-auto px-4">
             <p className="text-center text-xl font-bold text-glow animate-pulse">
-              🎮 Made by <span className="text-primary">Baishe</span>, <span className="text-secondary">Alvin</span>, <span className="text-accent">Nizar</span> and <span className="text-purple-400">Said Aboud</span> 🎮
+              🎮 The game by <span className="text-primary">Alvin Mwalimu</span> a young kenyan developer 🎮
             </p>
           </div>
         </div>
@@ -108,7 +108,7 @@ const Index = () => {
       <div className="bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 border-b border-primary/30 py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <p className="text-center text-xl font-bold text-glow animate-pulse flex-1">
-            🎮 Made by <span className="text-primary">Baishe</span>, <span className="text-secondary">Alvin</span>, <span className="text-accent">Nizar</span> and <span className="text-purple-400">Said Aboud</span> 🎮
+            🎮 The game by <span className="text-primary">Alvin Mwalimu</span> a young kenyan developer 🎮
           </p>
           
           <div className="flex items-center gap-4">
