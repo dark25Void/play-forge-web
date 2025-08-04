@@ -106,15 +106,19 @@ export const SnakeGame = () => {
       
       switch (e.key) {
         case 'ArrowUp':
+          e.preventDefault();
           if (prevState.direction.y === 0) newDirection = { x: 0, y: -1 };
           break;
         case 'ArrowDown':
+          e.preventDefault();
           if (prevState.direction.y === 0) newDirection = { x: 0, y: 1 };
           break;
         case 'ArrowLeft':
+          e.preventDefault();
           if (prevState.direction.x === 0) newDirection = { x: -1, y: 0 };
           break;
         case 'ArrowRight':
+          e.preventDefault();
           if (prevState.direction.x === 0) newDirection = { x: 1, y: 0 };
           break;
       }
