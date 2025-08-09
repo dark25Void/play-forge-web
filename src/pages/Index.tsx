@@ -48,7 +48,7 @@ const Index = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <div className="text-4xl text-rainbow mb-4">🌈 Loading Rainbow Snake... 🌈</div>
+          <div className="text-4xl bg-gradient-gaming bg-clip-text text-transparent mb-4">🎮 Loading Neon Snake... 🎮</div>
           <div className="animate-pulse text-muted-foreground">Preparing your gaming experience</div>
         </div>
       </div>
@@ -73,9 +73,9 @@ const Index = () => {
         {/* Hero Section with Login */}
         <div className="py-20 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-6xl font-bold mb-6 text-rainbow">🌈 Rainbow Snake 🌈</h1>
+            <h1 className="text-6xl font-bold mb-6 bg-gradient-gaming bg-clip-text text-transparent">🎮 Neon Snake 🎮</h1>
             <p className="text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Experience the most colorful Snake game ever created! Login to save your high scores and compete with players worldwide.
+              Experience the most vibrant Snake game ever created! Login to save your high scores and compete with players worldwide.
             </p>
             
             <div className="space-y-4">
@@ -137,7 +137,7 @@ const Index = () => {
       <section id="game-section" className="py-20 bg-secondary/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 text-glow">Play Neon Snake</h2>
+            <h2 className="text-4xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">Play Neon Snake</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Challenge yourself in this addictive cyberpunk Snake game. How high can you score?
             </p>

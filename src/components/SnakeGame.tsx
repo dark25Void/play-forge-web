@@ -185,24 +185,24 @@ export const SnakeGame = () => {
   }, [gameState.gameOver, gameState.score, highScore, toast]);
 
   return (
-    <Card className="p-6 bg-card/50 backdrop-blur-sm border-rainbow bounce-rainbow">
+    <Card className="p-6 bg-card/50 backdrop-blur-sm border-glow shadow-glow">
       <div className="space-y-6">
         {/* Game Header */}
         <div className="flex justify-between items-center">
           <div className="space-y-1">
-            <h2 className="text-3xl font-bold text-rainbow">🌈 Rainbow Snake 🌈</h2>
+            <h2 className="text-3xl font-bold bg-gradient-gaming bg-clip-text text-transparent">🎮 Neon Snake 🎮</h2>
             <p className="text-muted-foreground text-lg">🎯 Score: <span className="text-primary font-bold">{gameState.score}</span></p>
           </div>
           <div className="text-right space-y-1">
             <p className="text-sm text-muted-foreground">🏆 High Score</p>
-            <p className="text-2xl font-bold text-rainbow">{highScore}</p>
+            <p className="text-2xl font-bold bg-gradient-accent bg-clip-text text-transparent">{highScore}</p>
           </div>
         </div>
 
         {/* Game Board */}
         <div className="relative">
           <div 
-            className="grid gap-px bg-gradient-to-br from-purple/20 to-primary/20 p-3 rounded-xl mx-auto border-rainbow shadow-lg"
+            className="grid gap-px bg-gradient-to-br from-purple/20 to-primary/20 p-3 rounded-xl mx-auto shadow-glow border border-primary/30"
             style={{
               gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`,
               width: '420px',
@@ -217,16 +217,16 @@ export const SnakeGame = () => {
               const isHead = gameState.snake[0]?.x === x && gameState.snake[0]?.y === y;
               const isFood = gameState.food.x === x && gameState.food.y === y;
               
-              // Get snake segment index for rainbow coloring
+              // Get snake segment index for neon coloring
               const snakeIndex = gameState.snake.findIndex(segment => segment.x === x && segment.y === y);
-              const rainbowColors = [
-                'from-red-500 to-orange-500',
-                'from-orange-500 to-yellow-500', 
-                'from-yellow-500 to-green-500',
-                'from-green-500 to-cyan-500',
-                'from-cyan-500 to-blue-500',
-                'from-blue-500 to-purple-500',
-                'from-purple-500 to-pink-500'
+              const neonColors = [
+                'from-primary to-primary-glow',
+                'from-secondary to-secondary', 
+                'from-accent to-accent-glow',
+                'from-purple to-purple-glow',
+                'from-primary-glow to-accent',
+                'from-accent-glow to-purple',
+                'from-purple-glow to-primary'
               ];
 
               return (
@@ -237,7 +237,7 @@ export const SnakeGame = () => {
                     ${isSnake 
                       ? isHead 
                         ? 'bg-gradient-to-br from-white to-yellow-300 shadow-[0_0_20px_#ffd700] animate-pulse scale-110 z-10' 
-                        : `bg-gradient-to-br ${rainbowColors[snakeIndex % rainbowColors.length]} shadow-[0_0_10px_rgba(255,255,255,0.3)] scale-105`
+                        : `bg-gradient-to-br ${neonColors[snakeIndex % neonColors.length]} shadow-glow scale-105`
                       : isFood 
                         ? 'bg-gradient-to-br from-pink-400 to-red-500 shadow-[0_0_25px_#ff1493] animate-bounce scale-125 z-10' 
                         : 'bg-gradient-to-br from-slate-800/50 to-slate-900/50 hover:from-slate-700/50 hover:to-slate-800/50'
@@ -261,13 +261,13 @@ export const SnakeGame = () => {
 
           {/* Game Over Overlay */}
           {gameState.gameOver && (
-            <div className="absolute inset-0 bg-background/90 backdrop-blur-sm rounded-xl flex items-center justify-center border-rainbow">
-              <div className="text-center space-y-4 p-6 bg-gradient-to-br from-purple/20 to-primary/20 rounded-lg border-rainbow">
-                <h3 className="text-4xl font-bold text-rainbow animate-bounce">💀 Game Over! 💀</h3>
-                <p className="text-xl text-rainbow">🎯 Final Score: <span className="font-bold">{gameState.score}</span></p>
-                {gameState.score > highScore && (
-                  <p className="text-lg text-rainbow animate-pulse">🎉 NEW HIGH SCORE! 🎉</p>
-                )}
+              <div className="absolute inset-0 bg-background/90 backdrop-blur-sm rounded-xl flex items-center justify-center border border-destructive/50">
+                <div className="text-center space-y-4 p-6 bg-gradient-to-br from-purple/20 to-primary/20 rounded-lg border border-primary/30 shadow-glow">
+                  <h3 className="text-4xl font-bold bg-gradient-to-r from-destructive to-destructive/70 bg-clip-text text-transparent animate-bounce">💀 Game Over! 💀</h3>
+                  <p className="text-xl bg-gradient-primary bg-clip-text text-transparent">🎯 Final Score: <span className="font-bold">{gameState.score}</span></p>
+                  {gameState.score > highScore && (
+                    <p className="text-lg bg-gradient-accent bg-clip-text text-transparent animate-pulse">🎉 NEW HIGH SCORE! 🎉</p>
+                  )}
                 <Button onClick={startGame} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
                   🚀 Play Again 🚀
                 </Button>
@@ -288,18 +288,18 @@ export const SnakeGame = () => {
             </Button>
           ) : null}
           
-          <Button onClick={startGame} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-rainbow">
+          <Button onClick={startGame} className="bg-gradient-purple text-white font-bold py-3 px-6 rounded-full shadow-purple-glow hover:shadow-xl transform hover:scale-105 transition-all duration-200">
             🆕 New Game
           </Button>
         </div>
 
         {/* Instructions */}
         <div className="text-center space-y-3 text-base">
-          <div className="bg-gradient-to-r from-purple/20 to-primary/20 p-4 rounded-lg border-rainbow">
-            <p className="text-rainbow font-semibold">🎯 Use arrow keys to control your rainbow snake</p>
-            <p className="text-rainbow font-semibold">🍎 Eat the spinning apples to grow and score points</p>
-            <p className="text-rainbow font-semibold">⚠️ Avoid hitting walls and yourself!</p>
-            <p className="text-primary font-bold text-lg mt-2">🌈 The longer you get, the more colorful you become! 🌈</p>
+          <div className="bg-gradient-to-r from-purple/20 to-primary/20 p-4 rounded-lg border border-primary/30 shadow-glow">
+            <p className="text-primary font-semibold">🎯 Use arrow keys to control your neon snake</p>
+            <p className="text-secondary font-semibold">🍎 Eat the spinning apples to grow and score points</p>
+            <p className="text-accent font-semibold">⚠️ Avoid hitting walls and yourself!</p>
+            <p className="text-purple font-bold text-lg mt-2">⚡ The longer you get, the more vibrant you become! ⚡</p>
           </div>
         </div>
       </div>
